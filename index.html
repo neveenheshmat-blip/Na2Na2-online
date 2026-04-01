@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Na2Na2 - Order Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-img">🍲</div>
+                <div class="logo-text">
+                    <h1>Na2Na2</h1>
+                    <p>Fresh Egyptian Kitchen</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="points-display">
+                    💎 <span id="pointsBalance">0</span> Points
+                </div>
+                <a href="https://wa.me/201286460004?text=Hello%20Na2Na2" class="contact-link" target="_blank">
+                    💬 Chat
+                </a>
+                <button class="cart-btn" id="openCart">
+                    🛒 Cart
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fresh & Delicious Egyptian Cuisine</h1>
+            <p>Order now and earn loyalty points! Cash on delivery available.</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search dishes..." id="searchInput">
+                <button onclick="searchMenu()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="categories" id="categoriesContainer">
+        <button class="category-btn active" onclick="filterCategory('all')">All Items</button>
+    </div>
+
+    <!-- MENU -->
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Menu</h2>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+            <!-- Items will be loaded here -->
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <span>Your Order</span>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <span>Subtotal:</span>
+                <span id="subtotal">EGP 0.00</span>
+            </div>
+            <div class="cart-summary">
+                <span>Delivery:</span>
+                <span>Free</span>
+            </div>
+            <div id="pointsEarned" class="points-earned" style="display: none;">
+                🎁 Earn <span id="earnedPoints">0</span> points with this order!
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total">EGP 0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckout()" id="checkoutBtn" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="success-message" id="successMessage">
+                ✓ Order placed successfully! Check your WhatsApp.
+            </div>
+
+            <h2 class="modal-title" id="modalTitle">
+                <span id="titleIcon">📋</span>
+                <span id="titleText">Order Details</span>
+            </h2>
+
+            <form onsubmit="submitOrder(event)">
+                <div class="order-summary" id="orderSummary">
+                    <!-- Order items will appear here -->
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>Address *</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions</label>
+                    <textarea id="instructions" placeholder="Any special requests or allergies..."></textarea>
+                </div>
+
+                <div class="payment-method">
+                    <strong>Payment Method:</strong><br>
+                    <span class="payment-badge">💵 Cash on Delivery</span>
+                </div>
+
+                <div class="modal-buttons" id="modalButtons">
+                    <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
+                    <button type="submit" class="btn-submit">Place Order & Pay via WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast" style="display: none;"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
