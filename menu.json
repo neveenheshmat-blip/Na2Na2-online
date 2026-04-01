@@ -1,0 +1,89 @@
+{
+  "restaurant": "Na2Na2",
+  "location": "Gardenia City- Gardenia Mall",
+  "contact": "+201286460004",
+  "hours": "12 PM - 02 AM",
+  "menu": {
+    "loaded_fries_and_nachos": [
+      {
+        "name": "The Buff Pop",
+        "price": 175,
+        "description_ar": "بطاطس أو ناتشوز مع بوب كورن تشيكن بفالو، تركي مدخن، مخلل، رانش، وصوص جبنة"
+      },
+      {
+        "name": "The Italiano Crunch",
+        "price": 150,
+        "description_ar": "بطاطس أو ناتشوز مع بيبيروني، صوص مارينارا، شيدر، خضار، ريليش، وصوص جبنة"
+      },
+      {
+        "name": "The Mexi Heat",
+        "price": 170,
+        "description_ar": "بطاطس أو ناتشوز مع صدور فراخ جريلد، باربيكيو، ذرة حلوة، فاصوليا حمراء، وصوص جبنة"
+      },
+      {
+        "name": "Classic Hotdog Smash",
+        "price": 160,
+        "description_ar": "بطاطس أو ناتشوز مع هوت دوج، سويت تشيلي، ذرة حلوة، فاصوليا حمراء، شيتوس كرانشي، وصوص جبنة"
+      },
+      {
+        "name": "The Masri Bite",
+        "price": 170,
+        "description_ar": "بطاطس أو ناتشوز مع تشيلي كون كارن، صوص نعناع، شيدر، بصل كارميل، وصوص جبنة"
+      }
+    ],
+    "fries_and_wings": [
+      { "name": "Long Fries", "classic": 120, "dirty": 145 },
+      { "name": "Loly Fries", "classic": 70, "dirty": 90 },
+      { "name": "Chicken Wings", "classic": 120, "dirty": 145 },
+      { "name": "Popcorn Chicken", "classic": 100, "dirty": 125 }
+    ],
+    "hot_dog_club": [
+      { "name": "Corn Dog Sticks", "price": 110 },
+      { "name": "Mini Corn Dog", "price": 120 },
+      { "name": "Cheese Dog", "price": 140 }
+    ],
+    "fries_festival": [
+      { "name": "Potato Fries", "classic": 50, "dirty": 70 },
+      { "name": "Waffle Fries", "classic": 60, "dirty": 80 },
+      { "name": "Curly Fries", "classic": 60, "dirty": 80 },
+      { "name": "Sweet Potato", "classic": 80, "dirty": 100 },
+      { "name": "Sweet Corn Ribs", "classic": 80, "dirty": 100 }
+    ],
+    "sauces": {
+      "mayo_truffle": 50,
+      "cheesy": 40,
+      "sweet_chilli": 40,
+      "ranch": 30,
+      "buffalo": 30,
+      "fire_sauce": 30,
+      "honey_bbq": 30,
+      "na2na2_sauce": 30
+    },
+    "mojitos": [
+      { "name": "Lemon Mojito", "classic": 100, "boba": 130 },
+      { "name": "Strawberry Mojito", "classic": 100, "boba": 130 },
+      { "name": "Blueberry Mojito", "classic": 100, "boba": 130 },
+      { "name": "Mango Mojito", "classic": 120, "boba": 150 },
+      { "name": "Apple Cider Mojito", "classic": 120, "boba": 150 }
+    ],
+    "desserts": {
+      "pancakes": [
+        { "name": "Classic Pancake", "price": 100, "description": "Soft, fluffy, and simply iconic" },
+        { "name": "Stuffed Ball Pancake", "price": 145, "description": "Golden outside, gooey surprise inside" }
+      ],
+      "waffles": [
+        { "name": "Waffle Sticks", "price": 70, "description": "Crispy on the outside, fluffy on the inside" },
+        { "name": "Crazy Finger Waffle", "price": 120, "description": "Fun, dippable, and dangerously addictive!" }
+      ],
+      "dessert_sauces": {
+        "price": 50,
+        "options": ["Milk Chocolate", "Kinder Chocolate", "Pistachio", "Lotus", "Nutella", "White Chocolate"]
+      }
+    },
+    "drinks": [
+      { "name": "Soft Drink", "price": 25 },
+      { "name": "Cola Boba", "price": 130 },
+      { "name": "Small Water", "price": 10 }
+    ]
+  }
+}
