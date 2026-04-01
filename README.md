@@ -1,209 +1,145 @@
-[README.md](https://github.com/user-attachments/files/26392740/README.md)
-# Na2Na2 - Online Ordering System
 
-A modern, responsive online ordering website for Na2Na2 Egyptian Kitchen with WhatsApp integration, loyalty rewards, and cash-on-delivery support.
+[index.html](https://github.com/user-attachments/files/26392776/index.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Na2Na2 - Order Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-img">🍲</div>
+                <div class="logo-text">
+                    <h1>Na2Na2</h1>
+                    <p>Fresh Egyptian Kitchen</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="points-display">
+                    💎 <span id="pointsBalance">0</span> Points
+                </div>
+                <a href="https://wa.me/201286460004?text=Hello%20Na2Na2" class="contact-link" target="_blank">
+                    💬 Chat
+                </a>
+                <button class="cart-btn" id="openCart">
+                    🛒 Cart
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-## ✨ Features
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fresh & Delicious Egyptian Cuisine</h1>
+            <p>Order now and earn loyalty points! Cash on delivery available.</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search dishes..." id="searchInput">
+                <button onclick="searchMenu()">Search</button>
+            </div>
+        </div>
+    </section>
 
-### 🛒 Order Management
-- Browse menu items by category
-- Search functionality
-- Add/remove items from cart
-- Adjust quantities in real-time
-- Real-time price calculations
+    <!-- CATEGORIES -->
+    <div class="categories" id="categoriesContainer">
+        <button class="category-btn active" onclick="filterCategory('all')">All Items</button>
+    </div>
 
-### 💬 WhatsApp Integration
-- One-click ordering via WhatsApp
-- Pre-formatted order messages
-- Customer details automatically included
-- Direct connection to restaurant phone
+    <!-- MENU -->
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Menu</h2>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+            <!-- Items will be loaded here -->
+        </div>
+    </div>
 
-### 💎 Loyalty Points System
-- Earn points with every purchase
-- Persistent points storage (localStorage)
-- Points display in header
-- Rewards earned shown at checkout
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <span>Your Order</span>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <span>Subtotal:</span>
+                <span id="subtotal">EGP 0.00</span>
+            </div>
+            <div class="cart-summary">
+                <span>Delivery:</span>
+                <span>Free</span>
+            </div>
+            <div id="pointsEarned" class="points-earned" style="display: none;">
+                🎁 Earn <span id="earnedPoints">0</span> points with this order!
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total">EGP 0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckout()" id="checkoutBtn" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
 
-### 🎨 Professional Design
-- Egyptian-inspired color scheme (green & gold)
-- Responsive mobile & desktop design
-- Smooth animations and transitions
-- Clean, intuitive interface
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="success-message" id="successMessage">
+                ✓ Order placed successfully! Check your WhatsApp.
+            </div>
 
-### 📋 Checkout Features
-- Customer information form
-- Special instructions/allergies field
-- Order summary before checkout
-- Cash on delivery payment method
-- Toast notifications for actions
+            <h2 class="modal-title" id="modalTitle">
+                <span id="titleIcon">📋</span>
+                <span id="titleText">Order Details</span>
+            </h2>
 
-## 📱 Menu Categories
+            <form onsubmit="submitOrder(event)">
+                <div class="order-summary" id="orderSummary">
+                    <!-- Order items will appear here -->
+                </div>
 
-1. **Appetizers** (6 items)
-   - Hummus, Baba Ghanoush, Falafel, Tabbouleh, Grape Leaves, Moutabel
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>Address *</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions</label>
+                    <textarea id="instructions" placeholder="Any special requests or allergies..."></textarea>
+                </div>
 
-2. **Main Courses** (8 items)
-   - Koshari, Ful Medames, Grilled Chicken, Kofta, Mahshi, Molokhia, Shrimp, Fish
+                <div class="payment-method">
+                    <strong>Payment Method:</strong><br>
+                    <span class="payment-badge">💵 Cash on Delivery</span>
+                </div>
 
-3. **Sides** (5 items)
-   - Bread, Fries, Salad, Rice, Mezze Platter
+                <div class="modal-buttons" id="modalButtons">
+                    <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
+                    <button type="submit" class="btn-submit">Place Order & Pay via WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-4. **Beverages** (5 items)
-   - Orange Juice, Mango Juice, Hibiscus Tea, Soft Drinks, Iced Tea
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast" style="display: none;"></div>
 
-5. **Desserts** (3 items)
-   - Baklava, Konafa, Umm Ali
-
-## 🚀 How to Use
-
-### Local Development
-1. Download or clone the repository
-2. Open `index.html` in your web browser
-3. No server required - it's a static website
-
-### Customization
-
-#### Update Menu Items
-Edit `script.js` and modify the `menuData` object:
-
-```javascript
-const menuData = {
-    appetizers: [
-        { 
-            id: 1, 
-            name: 'Your Dish Name', 
-            category: 'appetizers', 
-            price: 45, 
-            description: 'Dish description', 
-            emoji: '🍲', 
-            points: 5, 
-            popular: false 
-        },
-        // Add more items...
-    ],
-    // Add other categories...
-}
-```
-
-#### Change WhatsApp Phone Number
-1. Find all instances of `201286460004` in the code
-2. Replace with your actual WhatsApp number (with country code, no +)
-3. Updated locations:
-   - Header "Chat" link in `index.html`
-   - `submitOrder()` function in `script.js`
-
-#### Customize Colors
-Edit the CSS variables in `style.css`:
-
-```css
-:root {
-    --primary: #d4a574;      /* Gold color */
-    --dark: #1a472a;         /* Dark green */
-    --light-bg: #f8f6f1;     /* Light background */
-    --text: #2c2c2c;         /* Text color */
-    --border: #e8e8e8;       /* Border color */
-    --success: #2e7d32;      /* Success green */
-    --warning: #f57c00;      /* Warning orange */
-}
-```
-
-## 📂 File Structure
-
-```
-Na2Na2-online/
-├── index.html              # Main HTML structure
-├── style.css              # All styling and animations
-├── script.js              # All functionality and menu data
-├── README.md              # This file
-└── assets/                # (Optional) Images and icons
-```
-
-## 🌐 Deployment
-
-### Option 1: Static Hosting (Recommended)
-Deploy to free hosting services:
-- **Vercel**: `vercel.com` - Deploy with one click
-- **Netlify**: `netlify.com` - Simple drag & drop
-- **GitHub Pages**: `github.com` - Free hosting
-- **Cloudflare Pages**: `pages.cloudflare.com`
-
-### Option 2: Traditional Hosting
-1. Upload all three files to your web host
-2. Make sure `index.html` is the entry point
-3. Share the URL with customers
-
-### Option 3: Local Network
-For testing on local network:
-```bash
-# Using Python (if installed)
-python -m http.server 8000
-# Then visit: http://your-ip:8000
-```
-
-## 🔧 Configuration
-
-### Loyalty Points
-- Points are stored in browser's localStorage
-- Clear browser data to reset points
-- Each item has custom points value
-
-### Order Delivery
-- Delivery fee is set to FREE (customize in `updateCart()` if needed)
-- Payment method is hardcoded to "Cash on Delivery"
-- Total calculated as: Subtotal + Delivery Fee
-
-## 📱 Browser Support
-- Chrome/Chromium 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 🛠️ Troubleshooting
-
-### WhatsApp Link Not Opening
-- Ensure you've updated the phone number to your actual number
-- Check phone number format: `201xxxxxxxxx` (with country code, no +)
-- Test on mobile device where WhatsApp is installed
-
-### Points Not Saving
-- Check if localStorage is enabled in browser
-- Clear browser cache and refresh
-- Try in private/incognito mode to test
-
-### Menu Not Displaying
-- Check browser console for errors (F12)
-- Ensure all files are in same directory
-- Verify CSS and JS files are properly linked in HTML
-
-## 📊 Analytics Ideas
-- Add Google Analytics
-- Track popular items
-- Monitor order frequency
-- Analyze customer preferences
-
-## 🔒 Security Notes
-- All data is processed on client-side
-- No sensitive data is stored
-- WhatsApp sends messages directly to your phone
-- No backend server required
-
-## 📞 Support
-For issues or customization help, check the code comments and documentation within each file.
-
-## 📄 License
-Free to use and modify for your business.
-
-## 🎯 Future Enhancements
-- [ ] Admin dashboard for menu management
-- [ ] Order tracking system
-- [ ] Payment gateway integration
-- [ ] Email notifications
-- [ ] Multiple restaurant locations
-- [ ] Customer reviews & ratings
-- [ ] Promotional codes & discounts
-- [ ] Order history
-
----
-
-**Made with ❤️ for Na2Na2 Kitchen**
+    <script src="script.js"></script>
+</body>
+</html>
